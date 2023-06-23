@@ -19,9 +19,13 @@ export class ColorModeService {
 		let mode: string | number = localStorage.getItem('color_mode');
 		mode = parseInt(mode);
 
-		if (mode === ColorMode.LIGHT || this.colorMode) {
+		if (isNaN(mode)) {
+			mode = this.colorMode;
+		}
+
+		if (mode === ColorMode.LIGHT) {
 			this.setLight();
-		} else if (mode === ColorMode.DARK || this.colorMode) {
+		} else if (mode === ColorMode.DARK) {
 			this.setDark();
 		}
 	}
