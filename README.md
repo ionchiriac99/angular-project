@@ -1,6 +1,7 @@
 # AngularProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0 and is hosted to firebase
+[https://angular-project-30c7c.web.app/](https://angular-project-30c7c.web.app/).
 
 ## Development server
 

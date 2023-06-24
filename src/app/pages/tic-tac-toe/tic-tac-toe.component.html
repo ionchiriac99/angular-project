@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="table">
+		<div>
+			<div #div #div1 (click)="onClick(div1, 1)"></div>
+			<div #div #div2 (click)="onClick(div2, 2)"></div>
+			<div #div #div3 (click)="onClick(div3, 3)"></div>
+		</div>
+		<div>
+			<div #div #div4 (click)="onClick(div4, 4)"></div>
+			<div #div #div5 (click)="onClick(div5, 5)"></div>
+			<div #div #div6 (click)="onClick(div6, 6)"></div>
+		</div>
+		<div>
+			<div #div #div7 (click)="onClick(div7, 7)"></div>
+			<div #div #div8 (click)="onClick(div8, 8)"></div>
+			<div #div #div9 (click)="onClick(div9, 9)"></div>
+		</div>
+	</div>
+	<div class="stats">
+		<h1>Statistic</h1>
+		<div>
+			<strong>PlayerX: </strong>
+			<span>{{statistic['x']}}</span>
+		</div>
+		<div>
+			<strong>PlayerO: </strong>
+			<span>{{statistic['o']}}</span>
+		</div>
+		<div>
+			<strong>Equality: </strong>
+			<span>{{statistic['equality']}}</span>
+		</div>
+	</div>
+</div>
