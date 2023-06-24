@@ -1,0 +1,45 @@
+:host {
+	display: inline-block;
+	padding: 1rem;
+	border-radius: 1rem;
+	background-color: rgba(var(--contrast-rgb-color), 0.1);
+	transition: background-color 300ms ease;
+
+	&:hover {
+		cursor: pointer;
+		background-color: rgba(var(--contrast-rgb-color), 0.2);
+	}
+
+	@media only screen and (max-width: 576px) {
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+	}
+}
+
+a {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+img {
+	width: 6.25rem;
+	aspect-ratio: 1;
+	border-radius: 1rem;
+	margin-bottom: 0.5rem;
+
+	@media only screen and (max-width: 576px) {
+		width: 4rem;
+		margin-bottom: 0.25rem;
+	}
+}
+
+p {
+	transition: color 300ms ease;
+	margin: 0;
+
+	&:hover {
+		color: #673ab7;
+	}
+}

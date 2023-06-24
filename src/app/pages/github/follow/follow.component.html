@@ -1,0 +1,14 @@
+<div *ngIf="totalFollow; else empty">
+	<h1><strong>{{capitalize(state)}}: </strong> {{totalFollow}}</h1>
+	<div class="cards">
+		<ng-container *ngFor="let data of follow">
+			<user-card [data]="data"></user-card>
+		</ng-container>
+	</div>
+	<paginator [currentPage]="page" [totalPages]="totalPages" (currentPageEvent)="toPage($event)"></paginator>
+</div>
+<ng-template #empty>
+	<h1 class="empty">
+		not {{state}}
+	</h1>
+</ng-template>

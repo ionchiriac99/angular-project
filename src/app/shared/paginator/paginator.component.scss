@@ -1,0 +1,47 @@
+:host {
+	display: inline-flex;
+	padding: 0.5rem;
+	transition: opacity 300ms ease, background-color 300ms ease;
+	margin: 0 -0.375rem;
+
+	&.disabled {
+		pointer-events: none;
+		user-select: none;
+		opacity: 0.6;
+	}
+
+	button {
+		vertical-align: middle;
+		display: inline-block;
+		color: rgba(var(--contrast-rgb-color), 0.9);
+		border: 0;
+		background-color: rgba(var(--contrast-rgb-color), 0.05);
+		border-radius: 0.25rem;
+		margin: 0 0.375rem;
+		line-height: 1rem;
+		padding: 0.5rem 0.75rem;
+		transition: color 300ms ease, background-color 300ms ease;
+
+		@media only screen and (max-width: 576px) {
+			margin: 0 0.25rem;
+			padding: 0.4rem 0.5rem;
+		}
+
+		&:hover:not(.active, [disabled]) {
+			background-color: rgba(var(--contrast-rgb-color), 0.1);
+			cursor: pointer;
+		}
+
+		&.active {
+			color: #fff;
+			background-color: #673ab7;
+		}
+	}
+
+	mat-icon {
+		font-size: 1.25rem;
+		height: 1.25rem;
+		width: 1.25rem;
+		display: block;
+	}
+}

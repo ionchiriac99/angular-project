@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Component} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {map, tap, mergeMap} from 'rxjs';
+import {map, tap, mergeMap, catchError, of} from 'rxjs';
 
 @Component({
 	selector: 'user-profile',
@@ -25,23 +25,19 @@ export class UserProfileComponent {
 		slug$
 			.pipe(
 				mergeMap((username: string) => {
-					console.log(`username: ${username}`);
 					return this.httpClient.get<any>(`${this.API}/${username}`);
 				}),
-				tap((data) => {
-					console.log('data: ', data);
-					if (data) {
-						this.data = data;
+				tap((data) => (this.data = data)),
+				catchError((e) => this.router.navigateByUrl('/github')),
+				map((data) => data?.repos_url),
+				mergeMap((repos) => {
+					if (repos) {
+						return this.httpClient.get<any>(`${repos}?page=1&per_page=5`);
 					} else {
-						this.router.navigateByUrl('/github');
+						return of(null);
 					}
 				}),
-				map((data) => data.repos_url),
-				mergeMap((repos) => this.httpClient.get<any>(`${repos}?page=1&per_page=5`)),
-				tap((data) => {
-					console.log(data);
-					this.repos = data;
-				})
+				tap((data) => (this.repos = data))
 			)
 			.subscribe();
 	}

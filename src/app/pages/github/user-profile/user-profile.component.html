@@ -5,9 +5,9 @@
 			<img [src]="data?.avatar_url" alt="{{data?.name}}">
 			<div class="data">
 				<strong>{{data?.name}}</strong>
-				<p><span>Followers: </span>{{data?.followers}}</p>
-				<p><span>Following: </span>{{data?.following}}</p>
-				<p><span>Repositories: </span>{{data?.public_repos}}</p>
+				<a routerLink="followers"><span>Followers: </span>{{data?.followers}}</a>
+				<a routerLink="following"><span>Following: </span>{{data?.following}}</a>
+				<a><span>Repositories: </span>{{data?.public_repos}}</a>
 			</div>
 		</div>
 	</div>

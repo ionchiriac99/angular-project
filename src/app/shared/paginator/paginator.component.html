@@ -1,0 +1,14 @@
+<button class="icon">
+	<mat-icon (click)="prev()">navigate_before</mat-icon>
+</button>
+<button
+	*ngFor="let item of pages"
+	[ngClass]="{active: item.value === currentPage}"
+	[disabled]="item.value.toString() !== item.label"
+	(click)="toPage(item.value)"
+>
+	{{ item.label }}
+</button>
+<button class="icon">
+	<mat-icon (click)="next()">navigate_next</mat-icon>
+</button>

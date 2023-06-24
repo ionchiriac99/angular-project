@@ -51,12 +51,23 @@ svg {
 		font-size: 1.25rem;
 	}
 
-	p {
+	a {
 		background-color: rgba(var(--contrast-rgb-color), 0.1);
+		text-decoration: none;
+		color: var(--contrast-color);
 		transition: background-color 300ms ease;
+		transition: color 300ms ease;
 		border-radius: 0.25rem;
 		padding: 0.5rem;
 		margin: 0.25rem 0.5rem;
+		text-decoration: none;
+
+		&:hover {
+			&:hover {
+				cursor: pointer;
+				color: #673ab7;
+			}
+		}
 	}
 
 	@media only screen and (max-width: 576px) {
