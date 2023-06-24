@@ -1,15 +1,15 @@
 @mixin light-variables() {
 	--base-color: #f1f1f1;
-	--base-rgb-color: 241, 241, 241;
-	--contrast-color: #1f1f1f;
-	--contrast-rgb-color: 31, 31, 31;
+	--base-rgb-color: 255, 255, 255;
+	--contrast-color: #1f1f1f 	;
+	--contrast-rgb-color: 0, 0, 0;
 }
 
 @mixin dark-variables() {
 	--base-color: #1f1f1f;
-	--base-rgb-color: 31, 31, 31;
+	--base-rgb-color: 0, 0, 0;
 	--contrast-color: #f1f1f1;
-	--contrast-rgb-color: 241, 241, 241;
+	--contrast-rgb-color: 255, 255, 255;
 }
 
 body.light {
@@ -19,5 +19,3 @@ body.light {
 body.dark {
 	@include dark-variables();
 }
-
-

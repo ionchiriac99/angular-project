@@ -1,0 +1,14 @@
+<a [href]="repository?.html_url" target="_blank">
+	<div class="repo">
+		<div>
+			<div class="name">{{repository?.name}}</div>
+			<div class="star">
+				<mat-icon>star_outlined</mat-icon>
+				<p>{{repository?.stargazers_count}}</p>
+			</div>
+		</div>
+		<div class="description">
+			<p>{{repository?.description}}</p>
+		</div>
+	</div>
+</a>

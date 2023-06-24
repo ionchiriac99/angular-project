@@ -1,0 +1,12 @@
+:host {
+	& > div {
+		overflow-x: hidden;
+		max-width: 1200px;
+		width: 100%;
+		margin: 0 auto;
+	}
+}
+
+username-form {
+	margin-bottom: 1rem;
+}

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ColorModeService} from '../services/color-mode.services';
 
 @Component({
 	selector: 'navbar',
@@ -6,5 +7,13 @@ import {Component} from '@angular/core';
 	styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-	// TODO implement
+	constructor(private readonly colorModeService: ColorModeService) {}
+
+	public setLight(): void {
+		this.colorModeService.setLight();
+	}
+
+	public setDark(): void {
+		this.colorModeService.setDark();
+	}
 }

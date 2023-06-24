@@ -2,8 +2,8 @@
 	display: flex;
 	width: 100%;
 	color: var(--contrast-color);
-	background-color: var(--base-color);
-	transition: color 300ms ease, background-color 300ms ease;
+	background-color: green;
+	transition: color 300ms ease;
 	padding: 1rem;
 }
 

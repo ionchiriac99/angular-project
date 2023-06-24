@@ -1,0 +1,43 @@
+:host {
+	display: block;
+}
+.field {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0.5rem 0;
+
+	.input {
+		display: flex;
+		width: 100%;
+
+		& > div {
+			margin-right: 1rem;
+			width: 100%;
+		}
+
+		@media only screen and (max-width: 340px) {
+			flex-direction: column;
+		}
+	}
+
+	input {
+		margin-right: 1rem;
+		width: 100%;
+		padding: 0.5rem;
+		height: 3rem;
+		border-radius: 0.5rem;
+		background-color: var(--base-color);
+		color: var(--contrast-color);
+		border: 0.125rem solid rgba(var(--contrast-rgb-color), 0.1);
+		transition: color 300ms ease, background-color 300ms ease;
+	}
+
+	label {
+		margin: 0.5rem 0;
+	}
+}
+
+button {
+	margin: 0.4rem 0;
+}

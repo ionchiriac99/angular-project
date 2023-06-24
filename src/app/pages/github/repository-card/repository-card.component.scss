@@ -1,0 +1,58 @@
+:host {
+	display: block;
+	width: 100%;
+	border-radius: 0.5rem;
+	margin: 0.5rem 0;
+	background-color: rgba(var(--contrast-rgb-color), 0.1);
+	transition: background-color 300ms ease;
+
+	&:hover {
+		background-color: rgba(var(--contrast-rgb-color), 0.2);
+	}
+}
+
+a {
+	text-decoration: none;
+	color: var(--contrast-color);
+	transition: color 300ms ease;
+}
+
+.repo {
+	padding: 0.5rem;
+
+	& > div {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+mat-icon {
+	color: goldenrod;
+}
+
+.name {
+	font-weight: 500;
+	font-size: 1.25rem;
+	text-decoration: underline;
+	transition: color 300ms ease;
+
+	&:hover {
+		color: #673ab7;
+	}
+
+}
+
+.star {
+	display: flex;
+	align-items: center;
+	margin-left: 1rem;
+
+	p {
+		margin: 0;
+	}
+}
+
+.description {
+	margin-top: 1rem;
+}
