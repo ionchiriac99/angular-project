@@ -7,8 +7,8 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background-color: var(--contrast-color);
-	transition: all 3000ms ease;
+	background-color: var(--base-color);
+	transition: background-color 300ms ease;
 }
 
 h1 {
