@@ -12,7 +12,7 @@
 	margin: 1.35rem 0;
 	max-width: 33.5rem;
 	display: inline-flex;
-	border: 0.25rem solid rgba(var(--contrast-rgb-color), 0.2);
+	border: 0.25rem solid #311c57;;
 
 	@media only screen and (max-width: 576px) {
 		max-width: 19.25rem !important;
@@ -31,12 +31,12 @@
 			vertical-align: middle;
 			text-align: center;
 			aspect-ratio: 1;
-			border: 0.25rem solid rgba(var(--contrast-rgb-color), 0.2);
+			border: 0.25rem solid #311c57;
 			transition: background-color 300ms ease;
 
 			&:hover {
 				cursor: pointer;
-				background-color: rgba(var(--contrast-rgb-color), 0.1);
+				background-color: rgba(var(--contrast-rgb-color), 0.4);
 			}
 
 			@media only screen and (max-width: 992px) {
