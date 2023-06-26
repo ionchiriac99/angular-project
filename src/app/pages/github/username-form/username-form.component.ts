@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
 	selector: 'username-form',
@@ -10,11 +10,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class UsernameFormComponent implements OnInit {
 	public form: FormGroup;
 
-	constructor(private router: Router, private route: ActivatedRoute) {}
+	constructor(private router: Router) {}
 
 	public ngOnInit(): void {
 		this.form = new FormGroup({
-			username: new FormControl('', [Validators.minLength(4)]),
+			username: new FormControl('', [
+				Validators.required,
+				Validators.minLength(1),
+				Validators.maxLength(39),
+				Validators.pattern(new RegExp(/^[a-zd](?:[a-zd]|-(?=[a-zd])){0,38}$/i)),
+			]),
 		});
 	}
 

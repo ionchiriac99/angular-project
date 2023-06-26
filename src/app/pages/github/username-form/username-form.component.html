@@ -11,8 +11,21 @@
 						characters
 					</p>
 				</form-field-error>
+				<form-field-error *ngIf="form.get('username')?.hasError('maxlength') && form.get('username')?.dirty">
+					<p>
+						The maximum length for username is
+						{{ form.get('username')?.getError('maxlength')?.requiredLength }}
+						characters
+					</p>
+				</form-field-error>
+				<form-field-error *ngIf="form.get('username')?.hasError('pattern') && form.get('username')?.dirty">
+					<p>
+						Username may only contain alphanumeric characters or single hyphens, and cannot begin or end
+						with a hyphen.
+					</p>
+				</form-field-error>
 				<form-field-error *ngIf="form.get('username')?.hasError('required') && form.get('username')?.dirty">
-					<p>Email is <strong>required</strong></p>
+					<p>Username is <strong>required</strong></p>
 				</form-field-error>
 			</div>
 			<button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Search</button>
