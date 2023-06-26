@@ -40,10 +40,8 @@ export class TicTacToeComponent {
 
 			if (this.player === 'x') {
 				this.playerX.push(position);
-				console.log(`playerX = ${this.playerX}`);
 			} else {
 				this.playerO.push(position);
-				console.log(`playerO = ${this.playerO}`);
 			}
 
 			if (this.counter >= 5) {
@@ -67,7 +65,6 @@ export class TicTacToeComponent {
 		const win = this.checkPlayerWin(this.player);
 
 		if (win) {
-			console.log(`Player ${this.player} wins!!!`);
 			this.resultDialog(win);
 			this.statistic[this.player]++;
 			this.reset();

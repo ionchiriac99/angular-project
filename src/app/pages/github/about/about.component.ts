@@ -4,20 +4,20 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Observable, of, map, mergeMap, tap} from 'rxjs';
 
 @Component({
-	selector: 'follow',
-	templateUrl: './follow.component.html',
-	styleUrls: ['./follow.component.scss'],
+	templateUrl: './about.component.html',
+	styleUrls: ['./about.component.scss'],
 })
-export class FollowComponent implements OnInit {
+export class AboutComponent implements OnInit {
 	public totalPages: number;
 	public page: number = 1;
-	public state: string = 'Followers';
-	public username: string = 'test';
-	public follow: any[] = [];
-	public totalFollow: number;
+	public state: string;
+	public username: string;
+	public aboutData: any[] = [];
+	public totalData: number;
 
 	private items_per_page: number = 30;
 	private API: string = 'https://api.github.com/users';
+	private acceptedStates: string[] = ['followers', 'following', 'repos'];
 
 	constructor(
 		private readonly route: ActivatedRoute,
@@ -31,7 +31,7 @@ export class FollowComponent implements OnInit {
 			map((param: Params) => {
 				const username: string = param['username'];
 				const state: string = param['state'];
-				if (state !== 'followers' && state !== 'following') {
+				if (!this.acceptedStates.includes(state)) {
 					this.router.navigateByUrl(`/github/${username}`);
 				}
 				this.state = state;
@@ -77,10 +77,11 @@ export class FollowComponent implements OnInit {
 		return this.httpClient.get<any>(`${this.API}/${username}`).pipe(
 			tap((data) => {
 				if (state === 'followers') {
-					this.totalFollow = data.followers;
-				}
-				if (state === 'following') {
-					this.totalFollow = data.following;
+					this.totalData = data.followers;
+				} else if (state === 'following') {
+					this.totalData = data.following;
+				} else if (state === 'repos') {
+					this.totalData = data.public_repos;
 				}
 			})
 		);
@@ -91,44 +92,35 @@ export class FollowComponent implements OnInit {
 			page = this.totalPages;
 		}
 
-		const mapFn = (data: any[]) => {
-			this.follow = data.map((el) => {
-				return {
-					login: el.login,
-					avatar_url: el.avatar_url,
-				};
-			});
+		let mapFn: any;
 
-			this.totalPages = Math.ceil(this.totalFollow / this.items_per_page);
-		};
+		if (state === 'repos') {
+			mapFn = (data: any[]) => {
+				this.aboutData = data.map((el) => {
+					return {
+						html_url: el.html_url,
+						name: el.name,
+						stargazers_count: el.stargazers_count,
+					};
+				});
+
+				this.totalPages = Math.ceil(this.totalData / this.items_per_page);
+			};
+		} else {
+			mapFn = (data: any[]) => {
+				this.aboutData = data.map((el) => {
+					return {
+						login: el.login,
+						avatar_url: el.avatar_url,
+					};
+				});
+
+				this.totalPages = Math.ceil(this.totalData / this.items_per_page);
+			};
+		}
+
 		return this.httpClient
 			.get<any>(`${this.API}/${username}/${state}?page=${page}`)
 			.pipe(map((data) => mapFn(data)));
-	}
-
-	private httpRequest(username: string, state: string, page: number = 1): Observable<any> {
-		const mapFn = (data: any[]) => {
-			this.follow = data.map((el) => {
-				return {
-					login: el.login,
-					avatar_url: el.avatar_url,
-				};
-			});
-
-			this.totalPages = Math.ceil(this.totalFollow / this.items_per_page);
-		};
-
-		return this.httpClient.get<any>(`${this.API}/${username}`).pipe(
-			tap((data) => {
-				if (state === 'followers') {
-					this.totalFollow = data.followers;
-				}
-				if (state === 'following') {
-					this.totalFollow = data.following;
-				}
-			}),
-			mergeMap(() => this.httpClient.get<any>(`${this.API}/${username}/${state}`)),
-			map((data) => mapFn(data))
-		);
 	}
 }

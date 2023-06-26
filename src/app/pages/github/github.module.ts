@@ -1,21 +1,21 @@
 import {NgModule} from '@angular/core';
 
+import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {FormFieldErrorModule} from 'src/app/shared/form-field-error/form-field-error.module';
+import {PaginatorModule} from 'src/app/shared/paginator/paginator.module';
 
 import {GithubComponent} from './github.component';
-import {FormFieldErrorModule} from 'src/app/shared/form-field-error/form-field-error.module';
-import {CommonModule} from '@angular/common';
 import {UsernameFormComponent} from './username-form/username-form.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {RepositoryCardComponent} from './repository-card/repository-card.component';
-import {FollowComponent} from './follow/follow.component';
+import {AboutComponent} from './about/about.component';
 import {UserCardComponent} from './user-card/user-card.component';
-import {PaginatorModule} from 'src/app/shared/paginator/paginator.module';
 
 const routes: Routes = [
 	{
@@ -30,7 +30,7 @@ const routes: Routes = [
 	},
 	{
 		path: ':username/:state',
-		component: FollowComponent,
+		component: AboutComponent,
 	},
 ];
 
@@ -53,7 +53,7 @@ const routes: Routes = [
 		UsernameFormComponent,
 		UserProfileComponent,
 		RepositoryCardComponent,
-		FollowComponent,
+		AboutComponent,
 		UserCardComponent,
 	],
 })
