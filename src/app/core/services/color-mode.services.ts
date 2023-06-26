@@ -8,8 +8,16 @@ export enum ColorMode {
 
 @Injectable({providedIn: 'root'})
 export class ColorModeService {
-	private colorMode: ColorMode = ColorMode.DARK;
+	private _colorMode: ColorMode = ColorMode.DARK;
 	private renderer: Renderer2;
+
+	public set colorMode(colorMode: ColorMode) {
+		this._colorMode = colorMode;
+	}
+
+	public get colorMode(): ColorMode {
+		return this._colorMode;
+	}
 
 	constructor(rendererFactory: RendererFactory2, @Inject(DOCUMENT) private document: Document) {
 		this.renderer = rendererFactory.createRenderer(null, null);
