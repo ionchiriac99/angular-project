@@ -1,0 +1,36 @@
+:host {
+	height: calc(100vh - 4rem);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+h1 {
+	color: #6a63fe;
+	font-weight: 500;
+	font-size: 12.5rem;
+	line-height: 100%;
+	margin: 0;
+
+	@media only screen and (max-width: 576px) {
+		font-size: 8rem;
+	}
+}
+
+p {
+	font-weight: 500;
+	font-size: 1.25rem;
+
+	@media only screen and (max-width: 576px) {
+		font-size: 1rem;
+	}
+}
+
+span {
+	font-size: 1.125rem;
+
+	@media only screen and (max-width: 576px) {
+		font-size: 0.75rem;
+	}
+}

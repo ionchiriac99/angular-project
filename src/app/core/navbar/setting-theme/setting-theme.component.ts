@@ -12,7 +12,11 @@ export class SettingThemeComponent implements AfterViewInit {
 	constructor(private readonly colorModeService: ColorModeService, private readonly renderer: Renderer2) {}
 
 	public ngAfterViewInit(): void {
-		this.change();
+		if (this.colorModeService.colorMode === ColorMode.DARK) {
+			this.renderer.setStyle(this.toggleButton.nativeElement, 'right', '32px');
+		} else {
+			this.renderer.setStyle(this.toggleButton.nativeElement, 'right', '0px');
+		}
 	}
 
 	public change(): void {

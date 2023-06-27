@@ -10,6 +10,10 @@ const routes: Routes = [
 		path: 'tic-tac-toe',
 		loadChildren: () => import('../pages/tic-tac-toe/tic-tac-toe.module').then((m) => m.TicTacToeModule),
 	},
+	{
+		path: '**',
+		loadChildren: () => import('../pages/not-found/not-found.module').then((m) => m.NotFoundModule),
+	},
 ];
 
 @NgModule({
