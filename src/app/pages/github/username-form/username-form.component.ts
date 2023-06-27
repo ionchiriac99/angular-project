@@ -18,7 +18,7 @@ export class UsernameFormComponent implements OnInit {
 				Validators.required,
 				Validators.minLength(1),
 				Validators.maxLength(39),
-				Validators.pattern(new RegExp(/^[a-zd](?:[a-zd]|-(?=[a-zd])){0,38}$/i)),
+				Validators.pattern(new RegExp(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i)),
 			]),
 		});
 	}
