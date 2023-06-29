@@ -11,7 +11,7 @@ export interface ICard {
 	styleUrls: ['./memory.component.scss'],
 })
 export class MemoryComponent {
-	public cards: string[] = ['euro_symbol', 'my_location', 'local_police', 'favorite', 'speed', 'add'];
+	public cards: string[] = ['euro_symbol', 'my_location', 'local_police', 'favorite', 'bolt', 'settings'];
 	public suffledCard: ICard[] = [];
 	public turns: number = 0;
 	public running: boolean = false;
