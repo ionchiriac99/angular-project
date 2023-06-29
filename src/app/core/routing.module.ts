@@ -15,6 +15,10 @@ const routes: Routes = [
 		loadChildren: () => import('../pages/tic-tac-toe/tic-tac-toe.module').then((m) => m.TicTacToeModule),
 	},
 	{
+		path: 'memory',
+		loadChildren: () => import('../pages/memory/memory.module').then((m) => m.MemoryModule),
+	},
+	{
 		path: '**',
 		loadChildren: () => import('../pages/not-found/not-found.module').then((m) => m.NotFoundModule),
 	},
