@@ -1,8 +1,12 @@
 import {NgModule} from '@angular/core';
 
 import {RouterModule, Routes} from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {CommonModule} from '@angular/common';
 
 import {MemoryComponent} from './memory.component';
+import {CardComponent} from './card/card.component';
 
 const routes: Routes = [
 	{
@@ -12,8 +16,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forChild(routes)],
+	imports: [RouterModule.forChild(routes), CommonModule, MatIconModule, MatButtonModule],
+	declarations: [MemoryComponent, CardComponent],
 	exports: [MemoryComponent],
-	declarations: [MemoryComponent],
 })
 export class MemoryModule {}

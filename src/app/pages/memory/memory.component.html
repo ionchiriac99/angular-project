@@ -1,1 +1,9 @@
-TO DO
+<div class="container">
+	<button mat-flat-button color="primary" (click)="newGame()">New Game</button>
+	<p *ngIf="running"><strong>Turnes: </strong>{{turns}}</p>
+	<div *ngIf="suffledCard" class="cards">
+		<ng-container *ngFor="let card of suffledCard">
+			<card #element [card]="card" (click)="onMove(element)"></card>
+		</ng-container>
+	</div>
+</div>

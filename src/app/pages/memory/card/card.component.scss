@@ -1,0 +1,99 @@
+:host {
+	&.turned {
+		.card {
+			transform: translateX(-100%) rotateY(-180deg);
+		}
+	}
+
+	&.solved {
+		.back {
+			background: #373B44;  /* fallback for old browsers */
+			background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		}
+	}
+}
+
+mat-icon {
+	color:  #6ed8c3;
+	font-size: 6rem;
+	height: 6rem;
+	width: 6rem;
+
+	@media only screen and (max-width: 1200px) {
+		font-size: 4rem;
+		height: 4rem;
+		width: 4rem;
+	}
+
+	@media only screen and (max-width: 768px) {
+		font-size: 3rem;
+		height: 3rem;
+		width: 3rem;
+	}
+
+}
+
+.scene {
+	display: inline-block;
+    perspective: 600px;
+	width: 12.5rem;
+    height: 12.5rem;
+
+	@media only screen and (max-width: 1200px) {
+		width: 9.375rem;
+    	height: 9.375rem;
+	}
+
+	@media only screen and (max-width: 768px) {
+		width: 6.25rem;
+		height: 6.25rem;
+	}
+}
+
+.card {
+	border: 0.25rem solid rgba(var(--contrast-rgb-color), 0.3);
+	position: relative;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	transform-style: preserve-3d;
+	transform-origin: center right;
+	transition: transform 500ms;
+}
+
+.card.is-flipped {
+	transform: translateX(-100%) rotateY(-180deg);
+}
+
+.face {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 12.5rem;
+	vertical-align: middle;
+	font-size: 6rem;
+	backface-visibility: hidden;
+
+	@media only screen and (max-width: 1200px) {
+		line-height: 9.375rem;
+		font-size: 4rem;
+	}
+
+	@media only screen and (max-width: 768px) {
+		line-height: 6.25rem;
+		font-size: 3rem;
+	}
+}
+
+.front {
+	background-color: rgba(var(--base-rgb-color), 0.6);
+}
+
+.back {
+	background: #0f2027; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #0f2027, #203a43, #2c5364); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	transform: rotateY(180deg);
+}
