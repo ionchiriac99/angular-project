@@ -1,0 +1,39 @@
+:host {
+	display: flex;
+	align-items: center;
+	gap: 4rem;
+	color: rgba(var(--base-rgb-color), 1);
+	transition: color 300ms ease;
+
+	@media only screen and (max-width: 768px) {
+		flex-direction: column-reverse;
+		gap: 2rem;
+	}
+}
+
+p {
+	font-size: 2rem;
+	line-height: 2rem;
+
+	@media only screen and (max-width: 992px) {
+		font-size: 1.5rem;
+		line-height: 1.5rem;
+	}
+
+	@media only screen and (max-width: 576px) {
+		font-size: 1.2rem;
+		line-height: 1.2rem;
+	}
+}
+
+a {
+	text-decoration: none;
+	font-weight: 500;
+	color: #6a63fe;
+}
+
+img {
+	@media only screen and (max-width: 992px) {
+		width: 18rem;
+	}
+}
