@@ -40,3 +40,15 @@ button:disabled {
 	border: 0.125rem solid rgba(var(--contrast-rgb-color), 0.1) !important;
 	transition: color 300ms ease, background-color 300ms ease;
 }
+
+.mdc-snackbar__surface {
+	background-color: rgba(var(--contrast-rgb-color), 0.1) !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+	color: red !important;
+}
+
+[matsnackbarlabel] {
+	color: var(--contrast-color) !important;
+}

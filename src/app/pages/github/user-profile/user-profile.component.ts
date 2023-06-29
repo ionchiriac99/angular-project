@@ -1,7 +1,8 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Component} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {map, tap, mergeMap, catchError, of} from 'rxjs';
+import {map, tap, mergeMap, of} from 'rxjs';
 
 @Component({
 	selector: 'user-profile',
@@ -15,9 +16,10 @@ export class UserProfileComponent {
 	private API: string = 'https://api.github.com/users';
 
 	constructor(
-		private router: Router,
+		private readonly router: Router,
 		private readonly route: ActivatedRoute,
-		private readonly httpClient: HttpClient
+		private readonly httpClient: HttpClient,
+		private readonly snackBar: MatSnackBar
 	) {}
 
 	public ngOnInit(): void {
@@ -28,7 +30,6 @@ export class UserProfileComponent {
 					return this.httpClient.get<any>(`${this.API}/${username}`);
 				}),
 				tap((data) => (this.data = data)),
-				catchError((e) => this.router.navigateByUrl('/github')),
 				map((data) => data?.repos_url),
 				mergeMap((repos) => {
 					if (repos) {
@@ -39,6 +40,14 @@ export class UserProfileComponent {
 				}),
 				tap((data) => (this.repos = data))
 			)
-			.subscribe();
+			.subscribe({
+				error: (e: HttpErrorResponse) => {
+					this.snackBar.open(`Error ${e.status}: ${e.error.message}`, 'Close', {
+						duration: 3000,
+					});
+					this.router.navigateByUrl('/github');
+					return null;
+				},
+			});
 	}
 }

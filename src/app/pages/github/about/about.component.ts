@@ -1,5 +1,6 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Observable, of, map, mergeMap, tap} from 'rxjs';
 
@@ -22,7 +23,8 @@ export class AboutComponent implements OnInit {
 	constructor(
 		private readonly route: ActivatedRoute,
 		private readonly router: Router,
-		private readonly httpClient: HttpClient
+		private readonly httpClient: HttpClient,
+		private readonly snackBar: MatSnackBar
 	) {}
 
 	public ngOnInit(): void {
@@ -62,7 +64,15 @@ export class AboutComponent implements OnInit {
 				}),
 				mergeMap(() => this.httpFollowRequest(this.username, this.state, this.page))
 			)
-			.subscribe();
+			.subscribe({
+				error: (e: HttpErrorResponse) => {
+					this.snackBar.open(`Error ${e.status}: ${e.error.message}`, 'Close', {
+						duration: 3000,
+					});
+					this.router.navigateByUrl('/github');
+					return null;
+				},
+			});
 	}
 
 	public toPage(page: number): void {
@@ -101,6 +111,7 @@ export class AboutComponent implements OnInit {
 						html_url: el.html_url,
 						name: el.name,
 						stargazers_count: el.stargazers_count,
+						description: el.description,
 					};
 				});
 

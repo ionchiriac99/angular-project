@@ -9,6 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {FormFieldErrorModule} from 'src/app/shared/form-field-error/form-field-error.module';
 import {PaginatorModule} from 'src/app/shared/paginator/paginator.module';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {GithubComponent} from './github.component';
 import {UsernameFormComponent} from './username-form/username-form.component';
@@ -46,6 +47,7 @@ const routes: Routes = [
 		MatButtonModule,
 		MatIconModule,
 		PaginatorModule,
+		MatSnackBarModule,
 	],
 	exports: [GithubComponent],
 	declarations: [
