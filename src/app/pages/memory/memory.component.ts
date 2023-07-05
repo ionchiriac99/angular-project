@@ -1,4 +1,4 @@
-import {Component, Renderer2} from '@angular/core';
+import {Component, ElementRef, Renderer2} from '@angular/core';
 import {CardComponent} from './card/card.component';
 
 export interface ICard {
@@ -16,6 +16,7 @@ export class MemoryComponent {
 	public turns: number = 0;
 	public running: boolean = false;
 
+	private throttling: boolean = false;
 	private remained: number = 12;
 	private firstChoise: CardComponent = undefined;
 	private secondChoise: CardComponent = undefined;
@@ -31,25 +32,44 @@ export class MemoryComponent {
 		this.suffledCard = suffledCard;
 	}
 
-	// TODO: implement throttle click to card
 	public onMove(element: CardComponent): void {
-		this.turns++;
+		if (this.isSolved(element.ref)) {
+			return;
+		}
 
-		if (this.firstChoise == undefined && this.secondChoise == undefined) {
-			this.firstChoise = element;
-			this.renderer.addClass(element.ref.nativeElement, 'turned');
-		} else if (this.firstChoise) {
-			if (element.card.index === this.firstChoise.card.index) {
-				this.firstChoise = undefined;
-				this.renderer.removeClass(element.ref.nativeElement, 'turned');
-			} else {
+		if (!this.throttling) {
+			this.turns++;
+			if (this.firstChoise == undefined && this.secondChoise == undefined) {
+				this.firstChoise = element;
 				this.renderer.addClass(element.ref.nativeElement, 'turned');
-				this.secondChoise = element;
-				setTimeout(() => {
-					this.checkPair();
-				}, 500);
+			} else if (this.firstChoise) {
+				this.setThtottling();
+
+				if (element.card.index === this.firstChoise.card.index) {
+					this.firstChoise = undefined;
+					this.renderer.removeClass(element.ref.nativeElement, 'turned');
+				} else {
+					this.renderer.addClass(element.ref.nativeElement, 'turned');
+					this.secondChoise = element;
+					setTimeout(() => {
+						this.checkPair();
+					}, 500);
+				}
 			}
 		}
+	}
+
+	private setThtottling(): void {
+		this.throttling = true;
+		setTimeout(() => {
+			this.throttling = false;
+		}, 500);
+	}
+
+	private isSolved(element: ElementRef): boolean {
+		const classes = element.nativeElement.classList;
+
+		return classes?.contains('solved');
 	}
 
 	private checkPair(): void {
@@ -57,6 +77,7 @@ export class MemoryComponent {
 			this.remained -= 2;
 			this.renderer.addClass(this.secondChoise.ref.nativeElement, 'solved');
 			this.renderer.addClass(this.firstChoise.ref.nativeElement, 'solved');
+			this.firstChoise.ref.nativeElement.disabled = true;
 			setTimeout(() => {
 				this.checkWin();
 			}, 500);
@@ -65,8 +86,8 @@ export class MemoryComponent {
 			this.renderer.removeClass(this.secondChoise.ref.nativeElement, 'turned');
 		}
 
-		this.firstChoise = undefined;
 		this.secondChoise = undefined;
+		this.firstChoise = undefined;
 	}
 
 	private checkWin(): void {
@@ -83,5 +104,6 @@ export class MemoryComponent {
 		this.suffledCard = [];
 		this.firstChoise = undefined;
 		this.secondChoise = undefined;
+		this.throttling = false;
 	}
 }
